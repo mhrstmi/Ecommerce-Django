@@ -1,0 +1,302 @@
+﻿{% extends './base.html' %} 
+{% load static %}
+{% block content %}
+
+    <div>
+        <!-- content placeholder -->
+        <section class="shop_section">
+            <div class="container">
+                <div class="row">
+                    <div class="col s12 m12 l3 right">
+                        <div class="sidebar_section offset">
+                            <div class="sidebar_row box-section">
+                                <h4>فیلتر قیمت:</h4>
+                                <div id="price-slider"></div>
+                                <div class="priceSliderWrapper">
+                                    <span class="price1"></span>
+                                    <span class="price2"></span>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="sidebar_row box-section">
+                                <h4>فیلتر رنگ:</h4>
+                                <div id="sidebar_color_list" class="sidebar_item_list">
+                                    <ul>
+                                        <li><a href="javascript:void(0);" data-colorid="13"><span style="color: black"><i class="fa fa-square"></i></span></a></li>
+                                        <li><a href="javascript:void(0);" data-colorid="44"><span style="color: red"><i class="fa fa-square"></i></span></a></li>
+                                        <li><a href="javascript:void(0);" data-colorid="5"><span style="color: green"><i class="fa fa-square"></i></span></a></li>
+                                        <li><a href="javascript:void(0);" data-colorid="14"><span style="color: yellow"><i class="fa fa-square"></i></span></a></li>
+                                        <li><a href="javascript:void(0);" data-colorid="22"><span style="color: orange"><i class="fa fa-square"></i></span></a></li>
+                                        <li><a href="javascript:void(0);" data-colorid="19"><span style="color: orangered"><i class="fa fa-square"></i></span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="sidebar_row box-section">
+                                <h4>فیلتر سایز:</h4>
+                                <div id="sidebar_size_list" class="sidebar_item_list">
+                                    <ul>
+                                        <li><a href="javascript:void(0);" data-sizeid="2">S</a></li>
+                                        <li><a href="javascript:void(0);" data-sizeid="3">M</a></li>
+                                        <li><a href="javascript:void(0);" data-sizeid="4">L</a></li>
+                                        <li><a href="javascript:void(0);" data-sizeid="5">XL</a></li>
+                                        <li><a href="javascript:void(0);" data-sizeid="6">XXL</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="sidebar_row box-section">
+                                <h4>فیلتر برندهای محصولات:</h4>
+                                <div id="sidebar_brands">
+                                    <ul>
+                                        <li>
+                                            <input type="checkbox" data-groupid="1" id="sb_group-1" />
+                                            <label for="sb_group-1">گروه محصول 1</label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" data-groupid="2" id="sb_group-2" />
+                                            <label for="sb_group-2">گروه محصول 2</label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" data-groupid="3" id="sb_group-3" />
+                                            <label for="sb_group-3">گروه محصول 3</label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" data-groupid="4" id="sb_group-4" />
+                                            <label for="sb_group-4">گروه محصول 4</label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" data-groupid="5" id="sb_group-5" />
+                                            <label for="sb_group-5">گروه محصول 5</label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" data-groupid="6" id="sb_group-6" />
+                                            <label for="sb_group-6">گروه محصول 6</label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" data-groupid="7" id="sb_group-7" />
+                                            <label for="sb_group-7">گروه محصول 7</label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" data-groupid="8" id="sb_group-8" />
+                                            <label for="sb_group-8">گروه محصول 8</label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" data-groupid="9" id="sb_group-9" />
+                                            <label for="sb_group-9">گروه محصول 9</label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" data-groupid="10" id="sb_group-10" />
+                                            <label for="sb_group-10">گروه محصول 10</label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" data-groupid="11" id="sb_group-11" />
+                                            <label for="sb_group-11">گروه محصول 11</label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" data-groupid="12" id="sb_group-12" />
+                                            <label for="sb_group-12">گروه محصول 12</label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" data-groupid="13" id="sb_group-13" />
+                                            <label for="sb_group-13">گروه محصول 13</label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" data-groupid="14" id="sb_group-14" />
+                                            <label for="sb_group-14">گروه محصول 14</label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" data-groupid="15" id="sb_group-15" />
+                                            <label for="sb_group-15">گروه محصول 15</label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" data-groupid="16" id="sb_group-16" />
+                                            <label for="sb_group-16">گروه محصول 16</label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" data-groupid="17" id="sb_group-17" />
+                                            <label for="sb_group-17">گروه محصول 17</label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" data-groupid="18" id="sb_group-18" />
+                                            <label for="sb_group-18">گروه محصول 18</label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" data-groupid="19" id="sb_group-19" />
+                                            <label for="sb_group-19">گروه محصول 19</label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" data-groupid="20" id="sb_group-20" />
+                                            <label for="sb_group-20">گروه محصول 20</label>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="col s12 m12 l9">
+                        <div class="products">
+                            <div class="clearfix"></div>
+                            <div class="row">
+                                <div class="col s12 m6 right existwrapper right-align rtl">
+                                    <p>
+                                        <input type="checkbox" id="chkExist" />
+                                        <label for="chkExist">
+                                            موجود باشد؟
+                                        </label>
+                                    </p>
+                                </div>
+                                <div class="col s12 m6">
+                                    <div class="switch products_view_type">
+                                        <label>
+                                            <i class="fa fa-th"></i>
+                                            <input type="checkbox" onchange="change_viewtype(this)" id="chkViewType" />
+                                            <span class="lever"></span>
+                                            <i class="fa fa-list"></i>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="row">
+                                {% for obj in products %}
+                                <div class="product prod_style1 col s6 m6 l4 x12 product--item view-grid is_exist">
+                                    <div class="info wow fadeInLeft" data-wow-delay="0s">
+                                        <div class="index image_wrapper" style="background-image: url('{{obj.image.url}}')"></div>
+                                        <div class="text">
+                                            <h2 class="name"><a href="{% url 'main:product_detail' pk=obj.id %}"> {{obj.title}}</a></h2>
+                                            <p class="description">{{obj.description|slice:":50"}}</p>
+                                            <p class="price">{{obj.price}} تومان</p>
+                                            <div class="product-colors"><span style="background-color: {{obj.color}};"></span></div>
+
+                                            <p class="center-align">
+                                                <a href="{% url 'basket:basket_add' pk=obj.id qty=1 %}">
+
+                                                <button class="addToCart"><i class="fa fa-cart-plus"></i>&nbsp;افزودن به سبد خرید</button>
+                                                </a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                {% endfor %}
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="row">
+                                <div class="_pagination">
+                                    <ul>
+                                        {% if products.has_previous %}
+                                        <li class="prev"><a href="?page={{products.previous_page_number}}">&lt;</a></li>
+                                        {% endif %}
+
+                                        {% for p in products.paginator.page_range %}
+                                        {% if products.number == p %}
+                                        <li class="active"><a href="?page={{ p }}">{{ p }}</a></li>
+                                        {% endif %}
+                                        {% endfor %}
+                                        
+
+                                        {% if products.has_next %}
+                                        <li class="next"><a href="?page={{products.next_page_number}}">&gt;</a></li>
+                                        {% endif %}
+
+                                    </ul>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script src="assets/lib/noUiSlider.8.5.1/nouislider.min.js"></script>
+        <script src="assets/lib/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="assets/lib/scrollbar/jquery.mCustomScrollbar.min.js"></script>
+        <script>
+        $(document).ready(function () {
+            var minPrice = 0;
+            var maxPrice = 1000000;
+            changePrice(minPrice, maxPrice);
+            var slider = document.getElementById('price-slider');
+            noUiSlider.create(slider, {
+                start: [minPrice, maxPrice],
+                connect: true,
+                step: 10000,
+                behaviour: 'tap',
+                range: {
+                    'min': minPrice,
+                    'max': maxPrice
+                },
+                format: {
+                    to: function (value) {
+                        return parseInt(value);
+                    },
+                    from: function (value) {
+                        return parseInt(value);
+                    }
+                },
+                tooltips: false
+            });
+            slider.noUiSlider.on('change', function (values, handle) {
+                changePrice(values[0], values[1]);
+                Materialize.toast(('مبلغ انتخاب شده بین ' + values[0] + ' تومان تا ' + values[1] + 'تومان می باشد.'), 4000);
+            });
+            slider.noUiSlider.on('slide', function (values, handle) {
+                changePrice(values[0], values[1]);
+            });
+            // methods
+            $('#chkExist').change(function () {
+                Materialize.toast(($(this).prop('checked') == true ? 'موجود باشد' : 'نمایش همه'), 4000);
+                //alert($(this).prop('checked') == true ? 'بله' : 'خیر');
+            });
+            $('#sidebar_color_list a').click(function () {
+                var colorid = $(this).attr('data-colorid');
+                $(this).toggleClass('selected');
+                Materialize.toast('کد رنگ انتخاب شده: ' + colorid, 4000);
+                //alert('کد رنگ انتخاب شده: ' + colorid);
+            });
+            $('#sidebar_size_list a').click(function () {
+                var sizeid = $(this).attr('data-sizeid');
+                $(this).toggleClass('selected');
+                Materialize.toast('کد سایز انتخاب شده: ' + sizeid, 4000);
+                //alert('کد سایز انتخاب شده: ' + sizeid);
+            });
+
+            // group scrollbar
+            $('#sidebar_brands').mCustomScrollbar({
+                axis: 'y',
+                theme: 'dark',
+                scrollButtons: { enable: true },
+                advanced: { updateOnContentResize: true }
+            });
+            $('#sidebar_brands input').change(function () {
+                var checked = $(this).prop('checked');
+                var status = checked == true ? 'انتخاب شد' : 'از حالت انتخاب خارج شد';
+                var gid = $(this).attr('data-groupid');
+                var label = $(this).find('+label').html() + ' (کد: ' + gid + ')';
+                Materialize.toast(label + " *** " + status, 4000);
+            });
+        });
+
+        function changePrice(p1, p2) {
+            if (p1 != undefined && p2 != undefined) {
+                $('.price1').html(p1 + ' تومان');
+                $('.price2').html(p2 + ' تومان');
+            }
+        }
+        function change_viewtype(_this) {
+            var _vtype = $(_this).prop('checked');
+            if (_vtype == true) {
+                $('.product--item').removeClass('view-grid');
+                $('.product--item').addClass('view-list');
+            } else {
+                $('.product--item').removeClass('view-list');
+                $('.product--item').addClass('view-grid');
+            }
+        }
+        </script>
+
+        <!-- content placeholder end -->
+    </div>
+    {% endblock %}

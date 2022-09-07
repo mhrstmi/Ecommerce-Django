@@ -1,0 +1,127 @@
+﻿{% extends './base.html' %} 
+{% load static %}
+{% block content %}
+
+    <div>
+        <!-- content placeholder -->
+        <div class="container">
+            <div class="row">
+                <div class="content-text">
+                    <div class="page-body page-cart">
+                        <div class="row">
+                            <div class="col s12 l3 m4 right">
+                                <div class="sidebar_section">
+                                    <div class="sidebar_row box-section">
+                                        <h4>محصولات جدید</h4>
+
+                                        {% for obj in products|slice:":5" %}
+                                        <div class="card-panel z-depth-0">
+                                            <div class="row valign-wrapper">
+                                                <div class="col s4 l5 m5 right">
+                                                    <a href="{% url 'main:product_detail' pk=obj.id %}" target="_blank">
+                                                        <img src="{{obj.image.url}}" alt="عنوان محصول" class="circle responsive-img" />
+                                                    </a>
+                                                </div>
+                                                <div class="col s8 l7 m7">
+                                                    <a href="{% url 'main:product_detail' pk=obj.id %}" target="_blank">
+                                                        <span class="black-text">
+                                                            {{obj.description|slice:":100"}}
+                                                        </span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col s12 l9 m8">
+                                <h1 class="page-title">سبد خرید شما</h1>
+                                <div class="cart_list">
+                                    <table class="bordered  striped highlight centered responsive-table">
+                                        <thead>
+                                            <tr>
+                                                <th data-field="image">عکس محصول</th>
+                                                <th data-field="name">نام محصول</th>
+                                                <th data-field="price">قیمت</th>
+                                                <th data-field="quantity">تعداد</th>
+                                                <th data-field="color">رنگ</th>
+                                                <th data-field="size">سایز</th>
+                                                <th data-field="delete">حذف</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+
+                                            {% for obj in basket %}
+                                            {% with product=obj.product %}
+
+                                            <tr>
+                                                <td>  <a href="{% url 'main:product_detail' product.id %}" ><img src="{{product.image.url}}" style="width: 60px; height: 60px; object-fit: cover;" /> </a></td>
+                                                <td>  {{product.title}}</td>
+                                                <td>{{product.price}} تومان</td>
+                                                <td>
+                                                    <form method="post" action="{% url 'basket:basket_update' pk=product.id %}">
+                                                        {% csrf_token %}
+                                                    <select class="quantity" name="qty">
+                                                        <option {% if obj.qty == 1 %} selected {% endif %}>1</option>
+                                                        <option {% if obj.qty == 2 %} selected {% endif %}>2</option>
+                                                        <option {% if obj.qty == 3 %} selected {% endif %}>3</option>
+                                                        <option {% if obj.qty == 4 %} selected {% endif %}>4</option>
+                                                        <option {% if obj.qty == 5 %} selected {% endif %}>5</option>
+                                                    </select>
+
+                                                    <button type="submit" >به روز رسانی</button>
+
+                                                </form>
+                                                </td>
+                                                <td> <span style="color: {{product.color}}"><i class="fa fa-square"></i></span> </td>
+                                                <td> <div id="sidebar_size_list" class="sidebar_item_list">
+                                                    <ul>
+                                                        <li><a >{{product.size}}</a></li>
+                                                        
+                                                    </ul>
+                                                </div> </td>
+                                                <td>  <a href="{% url 'basket:basket_delete' pk=product.id %}" >حذف</a></td>
+                                            </tr>
+                                            {% endwith %}
+                                            {% endfor %}
+                                            
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td class="center-align"></td>
+                                                <td class="center-align">جمع سبد خرید : <span class="text-bold pink-text">{{basket.get_subtotal_price}} تومان</span></td>
+                                                <td class="center-align">هزینه ارسال  : <span class="text-bold pink-text">1000 تومان</span></td>
+                                                <td class="center-align">جمع مبلغ کل: <span class="text-bold pink-text">{{basket.get_total_price}} تومان</span></td>
+                                                <td class="center-align">تعداد: <span class="text-bold pink-text">
+                                                    {% if basket|length > 0 %}
+                                                    {{basket|length}}
+                                                    {% else %}
+                                                    0
+                                                    {% endif %}
+                                                </span></td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="row">
+                                    <div class="col s12 center-align">
+                                        <br />
+
+                                        <form action="{% url 'checkout:get_address' %}">
+                                        <button type="submit" class="btn white-text green darken-2">تایید و پرداخت</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- content placeholder end -->
+    </div>
+    
+    {% endblock %}

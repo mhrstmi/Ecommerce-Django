@@ -1,0 +1,350 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+
+<html>
+
+<!-- Mirrored from themeyab.com/theme_for_show/SwNXeI6cv6/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 26 Oct 2021 04:53:02 GMT -->
+<head>
+    <title>فروشگاه فشن</title>
+    <!-- meta tags -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="content-language" content="fa" />
+    <meta name="apple-itunes-app" content="app-id=10162hffghn90651, affiliate-data=myAffiliateData, app-argument=myURL" />
+    <meta name="keywords" content="متاتگ کلمات کلیدی (کلمات کلیدی مدت زیادی است که دیگر پارامتری برای سئو محسوب نمی شود.)" />
+    <meta name="description" content="متاتگ توضیحات" />
+    <!-- meta tags end -->
+    <!-- favicon -->
+    <link rel='shortcut icon' href='{% static "favicon/favicon.ico" %}' type='image/x-icon' />
+    <link rel='icon' href='{% static "favicon/favicon.ico" %}' type='image/x-icon' />
+    <link rel='apple-touch-icon' href='https://themeyab.com/view/404.php' />
+    <link rel="apple-touch-icon" sizes="57x57" href="{% static "favicon/apple-icon-57x57.png" %}" />
+    <link rel="apple-touch-icon" sizes="60x60" href="{% static "favicon/apple-icon-60x60.png" %}" />
+    <link rel="apple-touch-icon" sizes="72x72" href="{% static "favicon/apple-icon-72x72.png" %}" />
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static "favicon/apple-icon-76x76.png" %}" />
+    <link rel="apple-touch-icon" sizes="114x114" href="{% static "favicon/apple-icon-114x114.png" %}" />
+    <link rel="apple-touch-icon" sizes="120x120" href="{% static "favicon/apple-icon-120x120.png" %}" />
+    <link rel="apple-touch-icon" sizes="144x144" href="{% static "favicon/apple-icon-144x144.png" %}" />
+    <link rel="apple-touch-icon" sizes="152x152" href="{% static "favicon/apple-icon-152x152.png" %}" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static "favicon/apple-icon-180x180.png" %}" />
+    <link rel="icon" type="image/png" sizes="192x192" href="{% static "favicon/android-icon-192x192.png" %}" />
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static "favicon/favicon-32x32.png" %}" />
+    <link rel="icon" type="image/png" sizes="96x96" href="{% static "favicon/favicon-96x96.png" %}" />
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static "favicon/favicon-16x16.png" %}" />
+    <link href="{% static "assets/lib/WOW-master/css/libs/animate.css" %}" rel="stylesheet" />
+    <link href="{% static "assets/bundle/demo.min.css" %}" rel="stylesheet" async />
+    <script src="{% static 'assets/js/jquery-2.0.2.min.js' %}"></script>
+    <!-- header placeholder -->
+    <link href="{% static "assets/lib/hero-slider/css/style.css" %}" rel="stylesheet" />
+    <script src="{% static 'assets/lib/hero-slider/js/main.js' %}"></script>
+    <script src="{% static 'assets/js/homepage.js' %}"></script>
+
+    <link href="{% static 'assets/css/shop.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/lib/noUiSlider.8.5.1/nouislider.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/lib/noUiSlider.8.5.1/nouislider.tooltips.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/lib/noUiSlider.8.5.1/nouislider.pips.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/lib/scrollbar/jquery.mCustomScrollbar.min.css' %}" rel="stylesheet" />
+    <!-- header placeholder end -->
+</head>
+<body>
+    <link href="{% static "assets/css/responsive.min.css" %}" rel="stylesheet" />
+    <section id="topheader">
+        <div class="content-text center-align container">
+            صفحات طراحی شده برای این قالب شامل <a href="index-2.html">صفحه اصلی</a>&nbsp;،&nbsp;<a href="shop.html">فروشگاه</a>&nbsp;،&nbsp;<a href="product-detail.html">جزئیات محصول</a>&nbsp;،&nbsp;<a href="cart.html">سبد خرید</a>&nbsp;،&nbsp;<a href="about.html">درباره ما</a>&nbsp;و&nbsp;<a href="contact.html">تماس با ما</a>&nbsp;می باشد.
+        </div>
+    </section>
+    <span class="open_help" onclick="toggleTopHeader()"><i class="fa fa-angle-down"></i></span>
+    <header id="header">
+        <div class="container">
+            <div class="row">
+                <div class="col logo_wrapper s3 m3 l3 right-align right">
+                    <div class="logo">
+                        <a href="{% url 'main:index' %}">
+                            <img src="{% static "assets/img/logo.jpg" %}" height="100" />
+                        </a>
+                    </div>
+                </div>
+                <div class="col header_wrapper s9 m9 l9">
+                    <div class="header_right">
+                        <div class="categories">
+                            <button id="btnSidebar" class="waves-effect btn pink accent-3 white-text waves-light" type="button"><span>دسته بندی ها</span></button>
+                        </div>
+                        <div id="searchbox" class="waves-effect waves-light">
+
+                            <form method="get" action="{% url 'main:search' %}">
+                                {% csrf_token %}
+                            <input type="search" name="searched_text" placeholder="عبارت مورد نظر خود را جستجو نمایید..." />
+                            <button type="submit" id="btnSearch"><i class="flaticon-magnifying-glass-browser"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="header_left">
+                        <div class="header_links">
+                            <ul>
+                                {% if request.user.is_authenticated %}
+                                <li><a href="{% url 'account:logout_user' %}" style="border-color:red;"><i class="flaticon-user-login-button"></i>&nbsp; خارج شوید</a></li>
+                                <li><a href="{% url 'account:profile' %}" ><i class="flaticon-add-contact"></i>&nbsp;  حساب کاربری</a></li>
+                                {% else %}
+                                <li><a href="#" class=" waves-effect login_trigger"><i class="flaticon-user-login-button"></i>&nbsp;وارد شوید</a></li>
+                                <li><a href="#" class="modal-trigger signup_trigger waves-effect"><i class="flaticon-add-contact"></i>&nbsp;ثبت نام کنید</a></li>
+                                {% endif %}
+                            
+                            </ul>
+                        </div>
+                        <div id="shopping_cart" class="wow flash" data-wow-duration="3s" data-wow-delay="2s">
+                            <a id="cd-cart-trigger" class="waves-effect" href="javascript:void(0);">
+                                <i class="flaticon-commerce-1"></i>
+                                &nbsp;&nbsp;
+                                سبد خرید
+                                <span class="badge">
+                                    {% if basket|length > 0 %}
+                                    {{basket|length}}
+                                    {% else %}
+                                    0
+                                    {% endif %}
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    {% block content %}{% endblock %}
+
+
+    <footer>
+        <div id="footer_top">
+            <div class="container">
+                <div class="row">
+                    <div class="col s12 l4 m4 right">
+                        <div class="col s6 l6 m6 right x12">
+                            <h4>درباره فَشِن شاپ</h4>
+                            <ul class="footer_list">
+                                <li><a href="about.html">مزایای فشن شاپ</a></li>
+                                <li><a href="about.html">راهنمای خرید از فشن شاپ</a></li>
+                                <li><a href="about.html">وبلاگ فشن شاپ</a></li>
+                                <li><a href="about.html">فشن شاپ در رسانه ها</a></li>
+                                <li><a href="about.html">تامین کنندگان کالا</a></li>
+                                <li><a href="about.html">همکاری با فشن شاپ</a></li>
+                            </ul>
+                        </div>
+                        <div class="col m6 l6 s6 x12">
+                            <h4>راهنمای مشتریان</h4>
+                            <ul class="footer_list">
+                                <li><a href="about.html">پرسش های متداول</a></li>
+                                <li><a href="about.html">روش های بازگرداندن کالا</a></li>
+                                <li><a href="about.html">شرایط و قوانین</a></li>
+                                <li><a href="about.html">کنترل کیفیت و بسته بندی</a></li>
+                                <li><a class="bold" href="contact.html">تماس با فشن شاپ</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col s12 l8 m8">
+                        <div class="col s12 m6 right content-text">
+                            متقاضی محترم، در صورتی که قالب جاری مطابق سلیقه و خواسته ی شما نیست همین حالا با شماره ی زیر تماس گرفته و با 40% تخفیف، قالب اختصاصی مورد نظر خود را سفارش دهید.<br />
+                            <b><i class="fa fa-phone"></i>&nbsp;&nbsp;09190700296&nbsp;(حیدری)</b>
+                        </div>
+                        <div class="col s12 m6">
+                            <div id="newsletter">
+                                <p>با عضویت در خبرنامه سایت می توانید از جدیدترین محصولات اضافه شده به فروشگاه و فروش های ویژه با خبر شوید.</p>
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col s12">
+                                            <div class="row">
+                                                <div class="input-field">
+                                                    <input id="icon_prefix" type="text" class="validate" />
+                                                    <label for="icon_prefix">ایمیل</label>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            <div class="row">
+                                                <div class="input-field">
+                                                    <input id="icon_telephone" type="tel" class="validate" />
+                                                    <label for="icon_telephone">شماره موبایل</label>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            <div class="row">
+                                                <div class="input-field">
+                                                    <button class="btn grey waves-effect" type="submit">
+                                                        ارسال
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div id="foote_middle" class="grey lighten-2">
+            <div class="container">
+                <div class="row">
+                    <div class="col s12 m4 footer_col">
+                        <h4>ارتباط با ما</h4>
+                        <div class="footer_contactus content-text">
+                            <p><i class="fa fa-home"></i>&nbsp;آدرس: لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</p>
+                            <p><i class="fa fa-phone"></i>&nbsp;تلفن های تماس: 02188888888 - 02199999999</p>
+                        </div>
+                    </div>
+                    <div class="col s12 m4 footer_col">
+                        <h4>درباره فروشگاه فشن شاپ</h4>
+                        <div class="content-text">
+                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز ....</p>
+                        </div>
+                    </div>
+                    <div class="col s12 m4 footer_col">
+                        <h4>قوانین و مقررات</h4>
+                        <div class="content-text">
+                            تمامی محصولات این فروشگاه حسب مورد دارای مجوزهای لازم از سازمان های مربوطه می باشد.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div id="footer_bot" class="grey darken-2">
+            <div class="container">
+                <div class="row">
+                    <div class="col s8 x12 right right-align">
+                        <div class="copyright">
+                            کلیه حقوق مادی و معنوی این سایت متعلق به تیم Madnessweb می باشد.
+                        </div>
+                    </div>
+                    <div class="col s4 x12 left-align">
+                        <ul id="footer_socials">
+                            <li><a href="contact.html"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="contact.html"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="contact.html"><i class="fa fa-linkedin"></i></a></li>
+                            <li><a href="contact.html"><i class="fa fa-google-plus"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- cart -->
+    <div id="cd-shadow-layer"></div>
+    <div id="cd-cart">
+        <span class="closebox"><i class="fa fa-times"></i></span>
+        <h2>سبد خرید</h2>
+        <ul class="cd-cart-items">
+
+            {% for obj in basket %}
+            {% with product=obj.product %}
+            <li>
+                <strong> {{product.title}} </strong>
+                <div class="cd-cart-option">
+                    <p>تعداد:&nbsp;<span class="cd-qty">{{obj.qty}} عدد</span></p>
+                    <p>قیمت:&nbsp;<span class="cd-price">{{product.price}} تومان</span></p>
+                </div>
+                <a href="{% url 'basket:basket_delete' pk=product.id %}" class="cd-item-remove cd-img-replace">حذف</a>
+            </li>
+            {% endwith %}
+            {% endfor %}
+
+            
+        </ul>
+        <!-- cd-cart-items -->
+
+        <div class="cd-cart-total">
+            <p>جمع سبد خرید  :&nbsp;<span>{{basket.get_subtotal_price}} تومان</span></p>
+        </div>
+
+        <div class="cd-cart-total">
+            <p>هزینه ارسال  :&nbsp;<span>1000 تومان</span></p>
+        </div>
+
+        <div class="cd-cart-total">
+            <p>جمع مبلغ کل:&nbsp;<span>{{basket.get_total_price}} تومان</span></p>
+        </div>
+        <!-- cd-cart-total -->
+
+        <a href="{% url 'basket:basket_summary' %}" class="checkout-btn"><i class="fa fa-chevron-circle-right"></i>&nbsp;پرداخت</a>
+
+        <p class="cd-go-to-cart"><a href="{% url 'basket:basket_summary' %}">برو به سبد خرید&nbsp;<i class="fa fa-hand-o-left"></i></a></p>
+    </div>
+    <!-- cart -->
+    <!-- Sidebar -->
+    <div class='sidebar'>
+        <span class="closebox"><i class="fa fa-times"></i></span>
+        <div class='title'>دسته بندی محصولات</div>
+        <ul class='nav'>
+           
+        {% for obj in categories %}
+            <li>
+                <a href="{% url 'main:product_list' pk=obj.id %}">
+                    <div class="sb_img">
+                        <img src="{% static 'sample/clothing/7.png' %}" />
+                    </div>
+                    <span> {{obj.title}} </span>
+                </a>
+            </li>
+        {% endfor %}
+
+          
+           
+           
+        </ul>
+    </div>
+    <!-- End Sidebar -->
+    <!-- login -->
+    <div class="form-wrap login-wrap bx_form">
+        <h4>ورود به سایت</h4>
+
+        <form method="post" action="{% url 'account:login_user' %}">
+
+            {% csrf_token %}
+        <input type="text" placeholder="شماره تلفن " name="phone_number" />
+        <input type="password" placeholder="کلمه عبور" name="password" />
+        <p class="center-align">
+            <button type="submit" class="btn pink accent-3 white-text btn-block waves-effect waves-light">ورود</button>
+        </p>
+        <p class="center-align"><a href="#" class="signup_trigger btn-flat"><i class="fa fa-angle-left"></i>&nbsp;ثبت نام</a></p>
+        <p class="center-align"><a href="{% url 'account:reset_password' %}"><i class="fa fa-angle-left"></i>&nbsp; رمزعبور خود را فراموش کرده اید</a></p>
+    </form>
+    </div>
+    <!-- end login -->
+    <!-- signup -->
+    <div class="form-wrap signup-wrap bx_form">
+        <h4>ثبت نام در سایت</h4>
+
+        <form method="post" action="{% url 'account:register' %}">
+            {% csrf_token %}
+        <input type="number" placeholder=" شماره تلفن  " name="phone_number" required />
+        <input type="email" placeholder="ایمیل" name="email" />
+        <input type="text" placeholder="نام   " name="name" />
+        <input type="text" placeholder="نام خانوادگی" name="last_name" />
+        <input type="password" placeholder="کلمه عبور" name="password" required />
+        <input type="password" placeholder="تکرار کلمه عبور" name="password_repeat" required />
+        <p class="center-align">
+            <button type="submit" class="btn pink accent-3 white-text btn-block waves-effect waves-light">ثبت نام</button>
+        </p>
+    </form>
+    </div>
+    <!-- end signup -->
+    <div id="overlay_close"></div>
+
+    <link href="{% static "assets/css/mdu_overrides.min.css" %}" rel="stylesheet" />
+    <script src="{% static 'assets/lib/WOW-master/dist/wow.min.js' %}"></script>
+    <script src="{% static 'assets/lib/owl.carousel.2.0.0-beta.2.4/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'assets/js/main.min.js' %}"></script>
+    <script src="{% static 'assets/lib/materialize/js/materialize.min.js' %}"></script>
+    <script src="{% static 'assets/lib/shopping_cart/js/main.js' %}"></script>
+    <script src="{% static 'assets/lib/jquery.bxslider/jquery.bxslider.min.js' %}"></script>
+    <script src="{% static 'assets/lib/materialize/js/materialize.min.js' %}"></script>
+    <script src="{% static 'assets/lib/noUiSlider.8.5.1/nouislider.min.js' %}" ></script>
+    <script src="{% static 'assets/lib/scrollbar/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+    <script src="{% static 'assets/lib/scrollbar/jquery.mCustomScrollbar.min.js' %}"></script>
+</body>
+
+<!-- Mirrored from themeyab.com/theme_for_show/SwNXeI6cv6/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 26 Oct 2021 04:53:40 GMT -->
+</html>

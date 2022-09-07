@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+
+
+        <style>
+
+            
+            .cart {
+                width: 100vw;
+                height: 100vh;
+                background: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)) , url(https://img.freepik.com/free-photo/sports-tools_53876-138077.jpg?w=2000);
+                display: flex;
+                background-size: cover;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .wrapper {
+                width: 40%;
+                height: 80%;
+                padding: 20px;
+                background-color: white;
+                border-radius: 25px;
+
+            }
+
+            .info {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .field {
+                width: 250px;
+                height: 40px;
+                margin-bottom: 20px;
+                text-align: center;
+                border-radius: 25px;
+                border-color: blue;
+
+            }
+
+           
+
+
+            button {
+                width:150px;
+                height:40px;
+                border-radius: 25px;
+                color: white;
+                background-color:green;
+                border: none;
+                font-weight: bold;
+                cursor: pointer;
+                margin-bottom: 20px;
+
+            }
+
+            a {
+                color: blue;
+                text-align:center;
+                margin-bottom: 10px;
+            }
+
+            
+            h1 {
+                font-size: 20px;
+                margin-bottom: 3px;
+              }
+          
+              p {
+                margin-bottom: 7px;
+              }
+
+        </style>
+      
+        <div class="cart">
+            <div class="wrapper">
+                <div class="info">
+
+                    <h1>پرداخت شده</h1>
+                    <p>{{order.total}}</p>
+
+                    <h1>شناسه سفارش</h1>
+                    <p>{{order.id}}</p>
+
+                    <h1>نام</h1>
+                    <p>{{order.name}}</p>
+
+                    <h1>نام خانوادگی</h1>
+                    <p>{{order.last_name}}</p>
+
+                    <h1>شماره تلفن</h1>
+                    <p>{{order.phone_number}}</p>
+
+                    <h1>ادرس</h1>
+                    <p>{{order.address}}</p>
+
+                </div>
+            </div>
+        </div>
+        
+    </body>
+</html>

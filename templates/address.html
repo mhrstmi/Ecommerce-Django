@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+
+
+        <style>
+
+            
+            .cart {
+                width: 100vw;
+                height: 100vh;
+                background: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)) , url(https://img.freepik.com/free-photo/sports-tools_53876-138077.jpg?w=2000);
+                display: flex;
+                background-size: cover;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .wrapper {
+                width: 30%;
+                height: 80%;
+                padding: 20px;
+                background-color: white;
+                border-radius: 25px;
+
+            }
+
+            .info {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .field {
+                width: 250px;
+                height: 40px;
+                margin-bottom: 20px;
+                text-align: center;
+                border-radius: 25px;
+                border-color: blue;
+
+            }
+
+           
+
+
+            button {
+                width:150px;
+                height:40px;
+                border-radius: 25px;
+                color: white;
+                background-color:green;
+                border: none;
+                font-weight: bold;
+                cursor: pointer;
+                margin-bottom: 20px;
+
+            }
+
+            a {
+                color: blue;
+                text-align:center;
+                margin-bottom: 10px;
+            }
+
+            
+            textarea {
+                width: 400px;
+                height: 150px;
+                margin-bottom: 20px;
+                border-radius: 10px;
+                border: 1px solid blue;
+              }
+
+        </style>
+      
+        <div class="cart">
+            <div class="wrapper">
+                <form method="post" class="info"  >
+
+                    {% csrf_token %}
+
+                    <label >ادرس</label>
+                    <textarea dir="rtl" name="address" required ></textarea>
+
+                    <input class="field" type="number" name="zipcode" placeholder=" کدپستی" required />
+                    <input class="field" type="number" name="phone_number" placeholder="شماره تلفن" required />
+                    <input class="field" type="text" name="name" placeholder="نام" required />
+                    <input class="field" type="text" name="last_name" placeholder="نام خانوادگی" required />
+
+                    <button type="submit" >رفتن به صفحه پرداخت</button>
+
+                    <a href="{% url 'main:index' %}"> بازگشت به خانه </a>
+
+                </form>
+            </div>
+        </div>
+        
+    </body>
+</html>

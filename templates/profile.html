@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+
+
+        <style>
+
+            
+            .cart {
+                width: 100vw;
+                height: 100vh;
+                background: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)) , url(https://img.freepik.com/free-photo/sports-tools_53876-138077.jpg?w=2000);
+                display: flex;
+                background-size: cover;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .wrapper {
+                width: 30%;
+                height: 80%;
+                padding: 20px;
+                background-color: white;
+                border-radius: 25px;
+
+            }
+
+            .info {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .field {
+                width: 250px;
+                height: 40px;
+                margin-bottom: 20px;
+                text-align: center;
+                border-radius: 25px;
+                border-color: blue;
+
+            }
+
+            .file {
+                margin-bottom: 20px;
+            }
+
+
+            button {
+                width:150px;
+                height:40px;
+                border-radius: 25px;
+                color: white;
+                background-color:green;
+                border: none;
+                font-weight: bold;
+                cursor: pointer;
+                margin-bottom: 20px;
+
+            }
+
+            a {
+                color: blue;
+                text-align:center;
+                margin-bottom: 10px;
+            }
+
+            img {
+                width:100px;
+                height: 100px;
+                border-radius: 50%;
+                margin-bottom: 20px;
+                border: 3px solid red;
+            }
+
+
+        </style>
+      
+        <div class="cart">
+            <div class="wrapper">
+                <form method="post" class="info"  enctype="multipart/form-data">
+
+                    {% csrf_token %}
+
+                    {% if request.user.profile_img %}
+
+                    <img src="{{request.user.profile_img.url}}" />
+
+                    {% endif %}
+
+                    <input class="file" type="file" name="profile_img" />
+
+                    <input class="field" type="number" value="{{request.user.phone_number}}" disabled="disabled"/>
+                    <input class="field" type="email" name="email" placeholder="ایمیل" value="{{request.user.email}}" />
+                    <input class="field" type="text" name="name" placeholder="نام" value="{{request.user.name}}" />
+                    <input class="field" type="text" name="last_name" placeholder="نام خانوادگی" value="{{request.user.last_name}}" />
+
+                    <button type="submit" >به روزرسانی</button>
+
+                    <a href="{% url 'account:set_password' request.user.id %}">  تغییر رمز عبور  </a>
+                    <a href="{% url 'main:index' %}"> بازگشت به خانه </a>
+
+                </form>
+            </div>
+        </div>
+        
+    </body>
+</html>

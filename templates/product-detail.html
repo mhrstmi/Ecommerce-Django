@@ -1,0 +1,210 @@
+﻿{% extends './base.html' %} 
+{% load static %}
+{% block content %}
+
+    <div>
+        <!-- content placeholder -->
+        <div class="container">
+            <div class="row">
+                <div class="col s12 l3 m4 right">
+                    <div class="sidebar_section">
+                        <div class="sidebar_row box-section">
+                            <h4>محصولات مرتبط:</h4>
+                            {% for obj in products|slice:":10" %}
+                            <div class="card-panel z-depth-0">
+
+                                
+                                <div class="row valign-wrapper">
+                                    <div class="col s4 l5 m5 right">
+                                        <a href="{% url 'main:product_detail' pk=obj.id %}" target="_blank">
+                                            <img src="{{obj.image.url}}" alt="عنوان محصول" class="circle responsive-img" />
+                                        </a>
+                                    </div>
+                                    <div class="col s8 l7 m7">
+                                        <a href="{% url 'main:product_detail' pk=obj.id %}" target="_blank">
+                                            <span class="black-text">
+                                                {{obj.description|slice:":100"}}
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 l9 m8">
+                    <div class="PageContent box-section">
+                        <h1 class="page-title">{{product.title}}</h1>
+                        <div class="clearfix"></div>
+                        <div class="content-text page-body">
+                            <section class="row">
+                                <div class="col s12 m12 l6 x12 right center-align">
+                                    <div class="image-responsive">
+                                        <img src="{{product.image.url}}" class="detail-img" />
+                                    </div>
+                                </div>
+                                <div class="col s12 m12 l6 x12">
+                                    <div class="product-detail-options">
+                                        <div class="clearfix"></div>
+                                        <div class="sidebar_row">
+                                            <h4> رنگ:</h4>
+                                            <div id="sidebar_color_list" class="sidebar_item_list">
+                                                <ul>
+                                                    <li><a ><span style="color: {{product.color}}"><i class="fa fa-square"></i></span></a></li>
+                                                    
+                                                </ul>
+                                            </div>
+
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="sidebar_row">
+                                            <h4> سایز:</h4>
+                                            <div id="sidebar_size_list" class="sidebar_item_list">
+                                                <ul>
+                                                    <li><a >{{product.size}}</a></li>
+                                                    
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <ul class="p-properties">
+                                            <li>قیمت برای شما:&nbsp;<span>{{product.price}} تومان</span></li>
+                                            <li>
+
+                                                <form method="post" action="{% url 'basket:basket_add' pk=product.id qty=0 %}">
+                                                    {% csrf_token %}
+                                                تعداد:&nbsp;
+                                                <select id="quantity" name="qty">
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                    <option>4</option>
+                                                    <option>5</option>
+                                                </select>
+
+                                                <button class="addtocart btn green white-text waves-effect waves-light" type="submit"><i class="fa fa-cart-plus"></i>&nbsp;افزودن به سبد خرید</button>
+                                            </form>
+                                            </li>
+                                            
+                                            
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </section>
+
+                            {{product.description}}
+
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="rtl box-section">
+                        <div class="row">
+                            <div class="col s12">
+                                <ul class="tabs">
+                                    <li class="tab col s3"><a href="#tab_technical" class="active"><i class="fa fa-list"></i>اطلاعات فنی</a></li>
+                                    <li class="tab col s3"><a href="#tab_comments"><i class="fa fa-comments-o"></i>نظرات کاربران</a></li>
+                                    <li class="tab col s3"><a href="#tab_review"><i class="fa fa-pencil"></i>نقد و بررسی تخصصی</a></li>
+                                </ul>
+                            </div>
+                            <div id="tab_technical" class="col s12 tab-body">
+                                <div class="tab-body content-text">
+                                    <ul class="spec-list with-arrow">\
+
+                                        {% for obj in details %}
+                                        <li class="clearfix"><span class="technicalspecs-title " data-id="">{{obj.title}}</span><span class="technicalspecs-value " data-id="">{{obj.text}}</span></li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                            <div id="tab_comments" class="col s12 tab-body">
+                                <div class="tab-body">
+                                    <div class="Comments">
+                                        <div class="comment-single">
+                                            <h4>مهمان<span class="time"><i class="fa fa-time"></i>۱۳۹۵/۰۲/۰۱ ، ساعت ۱۲:۵۷</span></h4>
+                                            <div class="content-text comment_text">
+                                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت
+                                            </div>
+                                        </div>
+                                        <div class="comment-single">
+                                            <h4>مهمان<span class="time"><i class="fa fa-time"></i>۱۳۹۵/۰۲/۰۱ ، ساعت ۱۲:۵۷</span></h4>
+                                            <div class="content-text comment_text">
+                                                محصول بسیار عالی بود، همین الان رسید دستم کیفیتش خیلی خوبه
+                                            </div>
+                                        </div>
+                                        <div class="comment-single">
+                                            <h4>مهمان<span class="time"><i class="fa fa-time"></i>۱۳۹۵/۰۲/۰۱ ، ساعت ۱۲:۵۷</span></h4>
+                                            <div class="content-text comment_text">
+                                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
+                                            </div>
+                                        </div>
+                                        <div class="comment-single">
+                                            <h4>مهمان<span class="time"><i class="fa fa-time"></i>۱۳۹۵/۰۲/۰۱ ، ساعت ۱۲:۵۷</span></h4>
+                                            <div class="content-text comment_text">
+                                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را
+                                            </div>
+                                        </div>
+                                        <div class="comment-single">
+                                            <h4>مهمان<span class="time"><i class="fa fa-time"></i>۱۳۹۵/۰۲/۰۱ ، ساعت ۱۲:۵۷</span></h4>
+                                            <div class="content-text comment_text">
+                                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را
+                                            </div>
+                                        </div>
+                                        <div class="comment-single">
+                                            <h4>مهمان<span class="time"><i class="fa fa-time"></i>۱۳۹۵/۰۲/۰۱ ، ساعت ۱۲:۵۷</span></h4>
+                                            <div class="content-text comment_text">
+                                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
+                                            </div>
+                                        </div>
+                                        <div class="comment-single">
+                                            <h4>مهمان<span class="time"><i class="fa fa-time"></i>۱۳۹۵/۰۲/۰۱ ، ساعت ۱۲:۵۷</span></h4>
+                                            <div class="content-text comment_text">
+                                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای
+                                            </div>
+                                        </div>
+                                        <div class="comment-single">
+                                            <h4>مهمان<span class="time"><i class="fa fa-time"></i>۱۳۹۵/۰۲/۰۱ ، ساعت ۱۲:۵۷</span></h4>
+                                            <div class="content-text comment_text">
+                                                محصول بسیار عالی بود، همین الان رسید دستم کیفیتش خیلی خوبه
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="tab_review" class="col s12">
+                                <div class="tab-body">
+                                    <div class="content-text">
+                                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</p>
+                                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</p>
+                                        <br />
+                                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+        $(document).ready(function () {
+            $('#sidebar_color_list a').click(function () {
+                var colorid = $(this).attr('data-colorid');
+                $(this).toggleClass('selected');
+                Materialize.toast('کد رنگ انتخاب شده: ' + colorid, 4000);
+                //alert('کد رنگ انتخاب شده: ' + colorid);
+            });
+            $('#sidebar_size_list a').click(function () {
+                var sizeid = $(this).attr('data-sizeid');
+                $(this).toggleClass('selected');
+                Materialize.toast('کد سایز انتخاب شده: ' + sizeid, 4000);
+                //alert('کد سایز انتخاب شده: ' + sizeid);
+            });
+        });
+        </script>
+
+        <!-- content placeholder end -->
+    </div>
+    {% endblock %}

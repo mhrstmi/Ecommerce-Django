@@ -1,0 +1,389 @@
+﻿{% extends './base.html' %} 
+{% load static %}
+{% block content %}
+
+    <div>
+        <!-- content placeholder -->
+        <div class="container">
+            <!-- Slider -->
+            <div class="row">
+                <ul class="accordion-group col s12" id="accordion">
+                    <li style="background-image: url('{% static 'sample/slider1.jpg' %}');">
+                        <div class="accordion-overlay"></div>
+                        <h3><a href="product-detail.html">عنوان تستی</a></h3>
+                        <section class="hidden-xs">
+                            <article>
+                                <p class="content-text">
+                                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
+                                    <span style="display: inline-block; width: 100%;" class="center-align"><a class="slider-more" href="product-detail.html">اطلاعات بیشتر&nbsp;<i class="fa fa-chevron-circle-left"></i></a></span>
+                                </p>
+                            </article>
+                        </section>
+                    </li>
+                    <li class="out" style="background-image: url('{% static 'sample/slider2.jpg' %}');">
+                        <div class="accordion-overlay"></div>
+                        <h3><a href="product-detail.html">عنوان تستی</a></h3>
+                        <section class="hidden-xs">
+                            <article>
+                                <p class="content-text">
+                                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
+                                    <span style="display: inline-block; width: 100%;" class="center-align"><a class="slider-more" href="product-detail.html">اطلاعات بیشتر&nbsp;<i class="fa fa-chevron-circle-left"></i></a></span>
+                                </p>
+                            </article>
+                        </section>
+                    </li>
+                    <li style="background-image: url('{% static 'sample/slider3.jpg' %}');">
+                        <div class="accordion-overlay"></div>
+                        <h3><a href="product-detail.html">عنوان تستی</a></h3>
+                        <section class="hidden-xs">
+                            <article>
+                                <p class="content-text">
+                                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
+                                    <span style="display: inline-block; width: 100%;" class="center-align"><a class="slider-more" href="product-detail.html">اطلاعات بیشتر&nbsp;<i class="fa fa-chevron-circle-left"></i></a></span>
+                                </p>
+                            </article>
+                        </section>
+                    </li>
+                    <li style="background-image: url('{% static 'sample/slider4.jpg' %}');">
+                        <div class="accordion-overlay"></div>
+                        <h3><a href="product-detail.html">عنوان تستی</a></h3>
+                        <section class="hidden-xs">
+                            <article>
+                                <p class="content-text">
+                                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
+                                    <span style="display: inline-block; width: 100%;" class="center-align"><a class="slider-more" href="product-detail.html">اطلاعات بیشتر&nbsp;<i class="fa fa-chevron-circle-left"></i></a></span>
+                                </p>
+                            </article>
+                        </section>
+                    </li>
+                </ul>
+            </div>
+            <!-- Slider End -->
+        </div>
+        <div class="clearfix"></div>
+        <div id="goods" class="goods sec_back4">
+            <!-- Products -->
+            <div class="container">
+                <h2 class="box-title box-section">
+                   ویترین
+                    <a href="{% url 'main:product_list' pk=0 %}">مشاهده ی همه&nbsp;<i class="fa fa-arrow-circle-o-left"></i></a>
+                </h2>
+                <div class="row">
+
+                {% for obj in products %}
+                {% if obj.is_featured == True %}
+                    <div class="product prod_style1 col s6 m6 l3 x12">
+                        <div class="info">
+                            <div class="index image_wrapper" style="background-image: url('{{obj.image.url}}')"></div>
+                            <div class="text">
+                                <h2 class="name"><a href="{% url 'main:product_detail' pk=obj.id %}"> {{obj.title}}</a></h2>
+                                <p class="description">{{obj.description|slice:":50"}}</p>
+                                <p class="price">{{obj.price}} تومان</p>
+                                <p class="center-align">
+
+                                    <a href="{% url 'basket:basket_add' pk=obj.id qty=1 %}">
+                                    <button type="submit" class="addToCart"><i class="fa fa-cart-plus"></i>&nbsp;افزودن به سبد خرید</button>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+                {% endfor %}
+                    
+                   
+                   
+                </div>
+            </div>
+            <!-- Products End -->
+        </div>
+        <div class="clearfix"></div>
+        <div class="container">
+            <!-- Products -->
+            <section id="special_products" class="box-section">
+                <h2 class="box-title">
+                    جدیدترین محصولات
+                    <a href="{% url 'main:product_list' pk=0 %}">مشاهده ی همه&nbsp;<i class="fa fa-arrow-circle-o-left"></i></a>
+                </h2>
+                <div class="row">
+                    <div class="slider--inner1">
+                        <!-- product -->
+
+                        {% for obj in products %}
+                        <div class="product">
+                            <div class="product_image">
+                                <a href="{% url 'main:product_detail' pk=obj.id %}">
+                                    <img src="{{obj.image.url}}" />
+                                </a>
+                                <div class="product_buttons">
+                                    <form action="{% url 'basket:basket_add' pk=obj.id qty=1 %}">
+                                    <button class="product_heart tooltipped" data-position="top" data-delay="100" data-tooltip="افزودن به لیست علاقه مندی ها"><i class="fa fa-heart"></i></button>
+                                    <button class="product_compare tooltipped" data-position="top" data-delay="100" data-tooltip="مقایسه محصول"><i class="fa fa-random"></i></button>
+                                    <button type="submit" class="add_to_cart tooltipped"  data-tooltip="افزودن به سبد خرید"><i class="fa fa-shopping-cart"></i></button>
+                                    </form>
+                                    
+                                    <div class="quick_view">
+                                        <a href="{% url 'main:product_detail' pk=obj.id %}">
+                                            <h6>مشاهده جزئیات</h6>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <h5>   {{obj.title}} </h5>
+                            <p class="price">{{obj.price}} تومان</p>
+                            <div class="product_rating small">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <!-- end product -->
+                        <!-- product -->
+                        
+                        <!-- end product -->
+                    </div>
+                    <script>
+                    $(document).ready(function () {
+
+                        $('.slider--inner1').owlCarousel({
+                            items: 4,
+                            loop: true,
+                            center: true,
+                            nav: true,
+                            dots: false,
+                            autoplay: false,
+                            navText: ['<button class="nav-button" type="button"><i class="fa fa-angle-left"></i></button>', '<button class="nav-button" type="button"><i class="fa fa-angle-right"></i></button>'],
+                            responsive: {
+                                // breakpoint from 0 up
+                                0: {
+                                    items: 1,
+                                    center: false
+                                },
+                                // breakpoint from 480 up
+                                480: {
+                                    items: 2,
+                                    center: false
+                                },
+                                // breakpoint from 768 up
+                                768: {
+                                    items: 3
+                                },
+                                // breakpoint from 992 up
+                                992: {
+                                    center: false,
+                                    items: 4
+                                },
+                                1200: {
+                                    autoplay: true,
+                                    center: false,
+                                    items: 5
+                                }
+                            },
+                            rtl: true,
+                            responsiveClass: true,
+                            margin: 10
+                        });
+                    });
+                    </script>
+                </div>
+            </section>
+            <!-- Products End -->
+        </div>
+        <div class="clearfix"></div>
+        <div class="container">
+            <section id="special_products2" class="box-section">
+                <h2 class="box-title">
+                    محصولات پیشنهادی
+                    <a href="{% url 'main:product_list' pk=0 %}">مشاهده ی همه&nbsp;<i class="fa fa-arrow-circle-o-left"></i></a>
+                </h2>
+                <div class="row">
+                    <div class="slider--inner2">
+                        <!-- product -->
+
+                        {% for obj in products %}
+                        {% if obj.is_recommended == True %}
+                        <div class="product">
+                            <div class="product_image">
+                                <a href="{% url 'main:product_detail' pk=obj.id %}">
+                                    <img src="{{obj.image.url}}" />
+                                </a>
+                                <div class="product_buttons">
+
+                                    <form action="{% url 'basket:basket_add' pk=obj.id qty=1 %}">
+                                    <button class="product_heart tooltipped" data-position="top" data-delay="100" data-tooltip="افزودن به لیست علاقه مندی ها"><i class="fa fa-heart"></i></button>
+                                    <button class="product_compare tooltipped" data-position="top" data-delay="100" data-tooltip="مقایسه محصول"><i class="fa fa-random"></i></button>
+                                    <button type="submit" class="add_to_cart tooltipped"  data-tooltip="افزودن به سبد خرید"><i class="fa fa-shopping-cart"></i></button>
+                                    </form>
+                                    
+                                    <div class="quick_view">
+                                        <a href="{% url 'main:product_detail' pk=obj.id %}">
+                                            <h6>مشاهده جزئیات</h6>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <h5>   {{obj.title}} </h5>
+                            <p class="price">{{obj.price}} تومان</p>
+                            <div class="product_rating small">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% endfor %}
+                        <!-- end product -->
+                        <!-- product -->
+                       
+                        <!-- end product -->
+                    </div>
+                    <script>
+                    $(document).ready(function () {
+                        $('.slider--inner2').owlCarousel({
+                            items: 4,
+                            loop: true,
+                            center: true,
+                            nav: true,
+                            dots: false,
+                            autoplay: false,
+                            navText: ['<button class="nav-button" type="button"><i class="fa fa-angle-left"></i></button>', '<button class="nav-button" type="button"><i class="fa fa-angle-right"></i></button>'],
+                            responsive: {
+                                // breakpoint from 0 up
+                                0: {
+                                    items: 1,
+                                    center: false
+                                },
+                                // breakpoint from 480 up
+                                480: {
+                                    items: 2,
+                                    center: false
+                                },
+                                // breakpoint from 768 up
+                                768: {
+                                    items: 3
+                                },
+                                // breakpoint from 992 up
+                                992: {
+                                    center: false,
+                                    items: 4
+                                },
+                                1200: {
+                                    autoplay: false,
+                                    center: false,
+                                    items: 5
+                                }
+                            },
+                            rtl: true,
+                            responsiveClass: true,
+                            margin: 10
+                        });
+                    });
+                    </script>
+                </div>
+            </section>
+        </div>
+        <div class="clearfix"></div>
+        <div class="sec_back1">
+            <div class="container">
+                <section id="special_slider">
+                    <h2 class="box-title">
+                        محصولات ویژه
+                        <a href="{% url 'main:product_list' pk=0 %}">مشاهده ی همه&nbsp;<i class="fa fa-arrow-circle-o-left"></i></a>
+                    </h2>
+                    <div class="box--inner">
+                        <div class="row">
+                            {% for obj in products %}
+                            {% if obj.is_special == True %}
+                            <div class="col s6 m6 l3 x12">
+                                <div class="product prod-thumb wow  fadeInUp" data-wow-delay=".5s">
+                                    <img src="{{obj.image.url}}" />
+                                    <div class="prod-info">
+
+                                        
+                                        <h4 class="prod-title"><a href="{% url 'main:product_detail' pk=obj.id %}">{{obj.title}} </a></h4>
+                                        
+                                        <form action="{% url 'basket:basket_add' pk=obj.id qty=1 %}">
+                                        <div class="buy-section clearfix">
+                                            
+                                            <h3 class="prod-price">{{obj.price}} ریال</h3>
+                                            <button type="submit" class="button">افزودن به سبد خرید</button>
+                                        
+                                        </div>
+                                    </form>
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                        {% endfor %}
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="sec_back2">
+            <div class="container">
+                <section id="products_discount">
+                    <h2 class="box-title">
+                        محصولات تخفیف دار
+                        <a href="{% url 'main:product_list' pk=0 %}">مشاهده ی همه&nbsp;<i class="fa fa-arrow-circle-o-left"></i></a>
+                    </h2>
+                    <div class="box--inner">
+                        <div class="row">
+                            {% for obj in products %}
+                            {% if obj.discount or obj.discount > 0 %}
+                            <div class="col s6 m4 x12 l3 prod-discount">
+                                <div class="product box-section _discount wow  fadeInUp" data-badge="discount" data-wow-delay=".25s">
+                                    <div class="product_sale">
+                                        <p>{{obj.discount}}% تخفیف</p>
+                                    </div>
+                                    <div class="product_image">
+                                        <a href="{% url 'main:product_detail' pk=obj.id %}">
+                                            <img src="{{obj.image.url}}" />
+                                        </a>
+                                        <div class="product_buttons">
+                                            
+                                            <form action="{% url 'basket:basket_add' pk=obj.id qty=1 %}">
+                                            <button class="product_heart tooltipped" data-position="top" data-delay="100" data-tooltip="افزودن به لیست علاقه مندی ها"><i class="fa fa-heart"></i></button>
+                                            <button class="product_compare tooltipped" data-position="top" data-delay="100" data-tooltip="مقایسه محصول"><i class="fa fa-random"></i></button>
+                                            <button type="submit" class="add_to_cart tooltipped"  data-tooltip="افزودن به سبد خرید"><i class="fa fa-shopping-cart"></i></button>
+                                            </form>
+                                            
+                                            <div class="quick_view">
+                                                <a href="{% url 'main:product_detail' pk=obj.id %}">
+                                                    <h6>مشاهده جزئیات</h6>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="prod-overlay">
+                                        <h4 class="product_title">{{obj.title}} </h4>
+                                        <h3 class="product_price">{{obj.price}} تومان</h3>
+                                        <span class="product_rating">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star-o"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <!-- content placeholder end -->
+    </div>
+    
+
+    {% endblock %}
